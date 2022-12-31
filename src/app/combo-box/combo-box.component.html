@@ -1,0 +1,22 @@
+<div class="combo">
+    <h2>Combo Box App</h2>
+    <div class="combo__input">
+        <input type="text" [value]="selectedValue" (keyup)="changeValue($event.target)" autocomplete="off">
+        <button (click)="openDropdown()" [ngClass]="{'rotate': rotate}">
+            <img src="../../assets/img/chevron-down.svg" alt="Down">
+        </button>
+        <div class="combo__input--dropdown" *ngIf="showDropdown">
+            <ul *ngIf="!showComboNewList">
+                <ng-container *ngFor="let item of comboList">
+                    <li data-value="{{item.id}}" (click)="selectItem($event, item.id)">{{item.value}}</li>
+                </ng-container>
+            </ul>
+            <ul *ngIf="showComboNewList">
+                <ng-container *ngFor="let item of comboNewList">
+                    <li data-value="{{item.id}}" (click)="selectItem($event, item.id)">{{item.value}}</li>
+                </ng-container>
+                <h3 *ngIf="comboNewList.length < 0">No Data Found</h3>
+            </ul>
+        </div>
+    </div>
+</div>
